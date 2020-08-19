@@ -192,17 +192,13 @@
     // var accumulator
     if (accumulator === undefined) {
       accumulator = collection[0];
-      for (var i = 1; i < collection.length; i++) {
-        accumulator = iterator(accumulator, collection[i]);
-      }
-
-    } else {
-      for (var i = 0; i < collection.length; i++) {
-        accumulator = iterator(accumulator, collection[i]);
-      }
+      collection = collection.slice(1);
     }
 
-    console.log(accumulator);
+    _.each(collection, function(element) {
+      accumulator = iterator(accumulator, element);
+    });
+
     return accumulator;
   };
 
